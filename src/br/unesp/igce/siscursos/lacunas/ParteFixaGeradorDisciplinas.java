@@ -8,6 +8,21 @@ package br.unesp.igce.siscursos.lacunas;
  *
  * @author WinXP
  */
-public class ParteFixaGeradorDisciplinas {
+public class ParteFixaGeradorDisciplinas  implements ParteExpressaoGeradorDisciplinas{
+    
+    private String texto;
+    
+    public ParteFixaGeradorDisciplinas(String texto) {
+        this.texto = texto;
+    }
+    
+    @Override
+    public String get() {
+        return texto;
+    }
+
+    
+    
+    
     
 }
