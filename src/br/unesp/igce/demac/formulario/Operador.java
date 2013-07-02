@@ -14,9 +14,11 @@ import java.util.Map;
  */
 public class Operador {
     protected Map<String,DisciplinasCursadas> dados;
-    
-    public Operador(Map<String,DisciplinasCursadas> dados){
-        this.dados=dados;   
+    protected br.unesp.igce.demac.formulario.ui.FormularioImpl form;
+    public Operador(Map<String,DisciplinasCursadas> dados,
+            br.unesp.igce.demac.formulario.ui.FormularioImpl form){
+        this.dados=dados; 
+        this.form=form;
         }
     public void  adicionarDisciplinasCursadas(DisciplinasCursadas disc){
         dados.put(disc.getNomeDisciplinas(),disc);   

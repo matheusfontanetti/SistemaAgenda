@@ -205,9 +205,10 @@ public class Formulario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                br.unesp.igce.demac.formulario.ui.FormularioImpl frm = new br.unesp.igce.demac.formulario.ui.FormularioImpl();
                 new Formulario().setVisible(true);
-                new Formulario().setSize(400, 400);
-                new Formulario().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                //new Formulario().setSize(400, 400);
+                //new Formulario().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 Map<String,DisciplinasCursadas> bd = new HashMap<String,DisciplinasCursadas>();
         try {
             FileInputStream fis = new FileInputStream("dados.txt");
@@ -217,7 +218,8 @@ public class Formulario extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Operador op = new Operador(bd);
+        Operador op = new Operador(bd,frm);
+        frm.setController(op);
       
     }
                 

@@ -4,12 +4,14 @@
  */
 package br.unesp.igce.demac.formulario;
 
+import java.io.Serializable;
+
 /**
  *
  * @author aluno
  */
-public class DisciplinasCursadas {
-    private String nomeDisciplinas;
+public class DisciplinasCursadas implements Serializable{
+private String nomeDisciplinas;
     private String horario;
     private String diaSemana;
 
