@@ -38,6 +38,26 @@ public class Operador {
      public DisciplinasCursadas buscarDiaSemana(String diaSemana){
         return dados.get(diaSemana); 
     }
+     public DisciplinasCursadas removerDisciplinas(String disciplina){
+         return dados.remove(disciplina);
+     }
+     
+      public DisciplinasCursadas removerHorario(String horario){
+         return dados.remove(horario);
+     }
+      
+      public DisciplinasCursadas removerDiaSemana(String diaSemana){
+         return dados.remove(diaSemana);
+     }
+      
+      
+      
+      
+
+      
+      
+     
+     
      public void fechar(){
          try {
             FileOutputStream fos = new FileOutputStream("dados.txt");

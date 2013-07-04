@@ -31,6 +31,7 @@ public class FormularioImpl extends JFrame implements ActionListener{
     protected JButton salvar;
     protected br.unesp.igce.demac.formulario.Operador cont;
     protected JButton buscar;
+    protected JButton remover;
     public FormularioImpl(){
     GridBagLayout layout = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
@@ -76,11 +77,21 @@ public class FormularioImpl extends JFrame implements ActionListener{
      salvar.addActionListener(this);
      
      
-    // buscar=new JButton("Salvar");
+    // buscar=new JButton("Buscar");
       c.gridx=0;c.gridy=0;
      layout.setConstraints(buscar, c);
      add(buscar);
      buscar.addActionListener(this);
+     
+      // buscar=new JButton("Buscar");
+      c.gridx=0;c.gridy=0;
+     layout.setConstraints(remover, c);
+     add(remover);
+     remover.addActionListener(this);
+     
+     
+     
+     
      
      addWindowListener(new WindowAdapter(){
      public void windowClosing(WindowEvent e){
