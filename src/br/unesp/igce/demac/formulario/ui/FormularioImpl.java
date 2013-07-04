@@ -29,18 +29,22 @@ public class FormularioImpl extends JFrame implements ActionListener{
     protected JLabel label3;
     protected JTextField campoDiaSemana;
     protected JButton salvar;
-    protected br.unesp.igce.demac.formulario.Operador cont;
+    protected br.unesp.igce.demac.formulario.Operador op;
     protected JButton buscar;
     protected JButton remover;
+    protected JButton editar;
+    
+    
     public FormularioImpl(){
     GridBagLayout layout = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
-        setLayout(new GridBagLayout());  
+        setLayout(layout);  
         
         
             
      // label1=new JLabel("Codigo da Disciplina:");
-     c.gridx=0;c.gridy=0;
+     label1=new JLabel();
+        c.gridx=0;c.gridy=0;
      layout.setConstraints(label1, c);
      add(label1);
      campoNomeDisciplinas = new JTextField(20);
@@ -50,6 +54,7 @@ public class FormularioImpl extends JFrame implements ActionListener{
      
      
     //label2=new JLabel("Nome da Disciplina:");
+     label2=new JLabel();
      c.gridx=0;c.gridy=1;
      layout.setConstraints(label2, c);
      add(label2);
@@ -58,6 +63,7 @@ public class FormularioImpl extends JFrame implements ActionListener{
      layout.setConstraints(campoHorario, c);
      add(campoHorario);
      
+     label3=new JLabel();
      c.gridx=0;c.gridy=1;
      layout.setConstraints(label3, c);
      add(label3);
@@ -71,6 +77,7 @@ public class FormularioImpl extends JFrame implements ActionListener{
      
      
     // salvar=new JButton("Salvar");
+     salvar=new JButton();
       c.gridx=0;c.gridy=0;
      layout.setConstraints(salvar, c);
      add(salvar);
@@ -78,24 +85,33 @@ public class FormularioImpl extends JFrame implements ActionListener{
      
      
     // buscar=new JButton("Buscar");
+      buscar=new JButton();
       c.gridx=0;c.gridy=0;
      layout.setConstraints(buscar, c);
      add(buscar);
      buscar.addActionListener(this);
      
-      // buscar=new JButton("Buscar");
+      // buscar=new JButton("remover");
+      remover=new JButton();
       c.gridx=0;c.gridy=0;
      layout.setConstraints(remover, c);
      add(remover);
      remover.addActionListener(this);
      
      
+    // buscar=new JButton("editar");
+    // editar=new JButton();
+    //  c.gridx=0;c.gridy=0;
+    // layout.setConstraints(editar, c);
+    // add(editar);
+    // editar.addActionListener(this);
+     
      
      
      
      addWindowListener(new WindowAdapter(){
      public void windowClosing(WindowEvent e){
-         cont.fechar();
+         op.fechar();
      }
  
      
@@ -105,29 +121,46 @@ public class FormularioImpl extends JFrame implements ActionListener{
        
      
      
-  public void setController(br.unesp.igce.demac.formulario.Operador cont){
-      this.cont=cont;   
+  public void setController(br.unesp.igce.demac.formulario.Operador op){
+      this.op=op;   
      
  }
  public void actionPerformed(ActionEvent e){
   if(e.getSource()==salvar){
-      cont.adicionarDisciplinasCursadas(
+      op.adicionarDisciplinasCursadas(
       new br.unesp.igce.demac.formulario.DisciplinasCursadas(campoNomeDisciplinas.getText(),campoHorario.getText(),
               campoDiaSemana.getText()));
+      System.out.println("a");
   } else if(e.getSource()==buscar){
-     br.unesp.igce.demac.formulario.DisciplinasCursadas  disc=cont.buscarDisciplinas(campoNomeDisciplinas.getText());
+     br.unesp.igce.demac.formulario.DisciplinasCursadas  disc=op.buscarDisciplinas(
+             campoNomeDisciplinas.getText());
+          
+             
       if(disc!=null){
           campoNomeDisciplinas.setText(disc.getNomeDisciplinas());
+          campoHorario.setText(disc.getHorario());
+          campoDiaSemana.setText(disc.getDiaSemana());
           
       }
   }
-      
+  else if(e.getSource()==remover){
+      op.removerDisciplinas(
+              new br.unesp.igce.demac.formulario.DisciplinasCursadas(campoNomeDisciplinas.getText(),campoHorario.getText(),
+              campoDiaSemana.getText()));  
+  }
+  
+ //else if(e.getSource()==editar){
+      //cont.editarDisciplinas( new br.unesp.igce.demac.formulario.DisciplinasCursadas(campoNomeDisciplinas.getText(),campoHorario.getText(),
+             // campoDiaSemana.getText(),new br.unesp.igce.demac.formulario.DisciplinasCursadas(auxiliarDisciplinas.getText(), auxiliarHorario.getText(),auxiliardiaSemana.getText()));  
+  //}
+  
+  
   }
  
  public void windowsStateChanged(WindowEvent w){
    if(w.getNewState()==WindowEvent.WINDOW_CLOSED){
        try{
-          FileOutputStream fos=new FileOutputStream("dados.txt"); 
+          FileOutputStream fos=new FileOutputStream("dados.bin"); 
           ObjectOutputStream oos= new ObjectOutputStream(fos);
           oos.writeObject(oos);
           

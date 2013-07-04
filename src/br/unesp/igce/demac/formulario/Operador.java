@@ -23,35 +23,61 @@ public class Operador {
     public void  adicionarDisciplinasCursadas(DisciplinasCursadas disc){
         dados.put(disc.getNomeDisciplinas(),disc);   
     }
-    public void  adicionarHorario(DisciplinasCursadas disc){
+  /*  public void  adicionarHorario(DisciplinasCursadas disc){
         dados.put(disc.getHorario(),disc);   
     }
     public void  adicionarDiaSemana(DisciplinasCursadas disc){
         dados.put(disc.getDiaSemana(),disc);      
     }
+     */
     public DisciplinasCursadas buscarDisciplinas(String disciplina){
         return dados.get(disciplina); 
     }
-    public DisciplinasCursadas buscarHorario(String horario){
-        return dados.get(horario); 
+  /*  public DisciplinasCursadas buscarHorario(DisciplinasCursadas horario1){
+        return dados.get(horario1); 
     }
-     public DisciplinasCursadas buscarDiaSemana(String diaSemana){
-        return dados.get(diaSemana); 
+     public DisciplinasCursadas buscarDiaSemana(DisciplinasCursadas diaSemana1){
+        return dados.get(diaSemana1); 
     }
-     public DisciplinasCursadas removerDisciplinas(String disciplina){
-         return dados.remove(disciplina);
+     */
+     public DisciplinasCursadas removerDisciplinas(DisciplinasCursadas disc){
+         return dados.remove(disc.getNomeDisciplinas());
      }
      
-      public DisciplinasCursadas removerHorario(String horario){
-         return dados.remove(horario);
+    /*  public DisciplinasCursadas removerHorario(DisciplinasCursadas horario){
+         return dados.remove(horario.getHorario());
      }
       
-      public DisciplinasCursadas removerDiaSemana(String diaSemana){
-         return dados.remove(diaSemana);
-     }
+      public DisciplinasCursadas removerDiaSemana(DisciplinasCursadas diaSemana){
+         return dados.remove(diaSemana.getDiaSemana());
+          */
+    // }
+     // public DisciplinasCursadas editarDisciplinas( DisciplinasCursadas auxiliar){
+       // DisciplinasCursadas disciplinas;
+        
+       //   buscarDisciplinas(disciplinas);
+       //   auxiliar=auxiliar;
+       //   removerDisciplinas(auxiliar);
+        //  return dados.put(auxiliar.getNomeDisciplinas(),auxiliar);  
+     // }
       
       
-      
+    /*  public DisciplinasCursadas editarHorario(DisciplinasCursadas horario, DisciplinasCursadas auxiliar){
+          buscarDisciplinas(horario);
+          auxiliar=horario;
+          removerDisciplinas(horario);
+          return dados.put(auxiliar.getNomeDisciplinas(),auxiliar);  
+      }
+       
+     public DisciplinasCursadas editarDiaSemana(DisciplinasCursadas diaSemana, DisciplinasCursadas auxiliar){
+          buscarDisciplinas(diaSemana);
+          auxiliar=diaSemana;
+          removerDisciplinas(diaSemana);
+          return dados.put(auxiliar.getNomeDisciplinas(),auxiliar);  
+      }
+     
+        
+      */
       
 
       
@@ -60,7 +86,7 @@ public class Operador {
      
      public void fechar(){
          try {
-            FileOutputStream fos = new FileOutputStream("dados.txt");
+            FileOutputStream fos = new FileOutputStream("dados.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(dados);
             oos.close();
